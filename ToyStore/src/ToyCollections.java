@@ -63,16 +63,23 @@ public class ToyCollections {
                 inGame.get(j).plusAmount();
                 allToy = minusToy(allToy, id);
                 if (allToy.get(id).getAmount() < 1) {
-                    allToy = removeToy(allToy, id);
                     plusminusId(false);
+                    if (allToy.get(id).isAgeGroup()) {
+                        View.deleteToy(View.folderName, allToy.get(id).getName());
+                    } else {
+                        View.deleteToy(View.folderNameSchool, allToy.get(id).getName());
+                    }
+                    allToy = removeToy(allToy, id);
                 }
                 return 10;
             }
         }
         allToy.get(id).minusAmount();
         Toy toy = allToy.get(id);
+        allToy = minusToy(allToy, id);
         Model.putInMap(Model.createToy(true, toy.isAgeGroup(), idGame, toy.getName(), 1, toy.getDropChance()));
         if (allToy.get(id).getAmount() < 1) {
+            View.deleteToy(View.folderNameSchool, allToy.get(id).getName());
             allToy = removeToy(allToy, id);
             plusminusId(false);
         }
@@ -82,22 +89,26 @@ public class ToyCollections {
     public static int removeToPlayable(int id) {
         for (int j = 0; j < inGame.size(); j++) {
             if (inGame.get(j).getName().equals(allToy.get(id).getName())) {
+
                 allToy.get(j).plusAmount();
                 inGame = minusToy(inGame, id);
                 if (inGame.get(id).getAmount() < 1) {
-                    inGame = removeToy(inGame, id);
                     plusminusIdGame(false);
+                    View.deleteToy(View.folderNameInGame, inGame.get(id).getName());
+                    inGame = removeToy(inGame, id);
                 }
                 return 10;
             }
         }
         Toy toy = inGame.get(id);
         Model.putInMap(Model.createToy(false, toy.isAgeGroup(), getId(), toy.getName(), 1, toy.getDropChance()));
+        inGame = minusToy(inGame, id);
         if (inGame.get(id).getAmount() < 1) {
+            plusminusIdGame(false);
+            View.deleteToy(View.folderNameInGame, inGame.get(id).getName());
             inGame = removeToy(inGame, id);
             plusminusIdGame(false);
         }
-        inGame = minusToy(inGame, id);
         return 10;
     }
 

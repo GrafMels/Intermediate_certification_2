@@ -1,6 +1,6 @@
 {
-	"id": 4,
+	"id": 1,
 	"amount": 1,
 	"dropChance": 44,
-	"age": false
+	"age": true
 }

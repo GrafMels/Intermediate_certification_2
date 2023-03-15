@@ -99,6 +99,7 @@ public class View {
         System.out.println("7. Добавить новый тип игрушки");
         System.out.println("8. Добавить новый шанс выпадения игрушки вне игры");
         System.out.println("9. Сохранить всё");
+        System.out.println("0. Выход");
         int answer = scanner.nextInt();
         return answer;
     }
@@ -200,5 +201,10 @@ public class View {
             answer = scanner.nextInt();
         }
         return answer;
+    }
+
+    public static void deleteToy(String folder, String name) {
+        File file = new File(String.format("src\\toysName\\%s\\%s.json", folder, name));
+        file.delete();
     }
 }
