@@ -65,6 +65,16 @@ public class Controller {
                 answer2 = true;
 
             } else if (answer1 == 8) {
+                int answer3 = -11;
+                int choisenToy = 0;
+                while (answer3 < 1 | answer3 > 99) {
+                    Model.clear();
+                    choisenToy = View.choiceToy(false);
+                    answer3 = View.newDropChance();
+                }
+                ToyCollections.allToy.get(choisenToy).setDropChance(answer3);
+
+            } else if (answer1 == 9) {
                 View.saveAll();
 
             } else if (answer1 == 0) {

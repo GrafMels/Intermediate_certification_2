@@ -93,11 +93,12 @@ public class View {
         System.out.println("1. Разыграть игрушку");
         System.out.println("2. Добавить игрушку в игру");
         System.out.println("3. Убрать игрушку из игры");
-        System.out.println("4. Добавить количество игрушек вне игры");
+        System.out.println("4. Добавить новое количество игрушек вне игры");
         System.out.println("5. Показать все игрушки вне игры");
         System.out.println("6. Показать все игрушки в игре");
         System.out.println("7. Добавить новый тип игрушки");
-        System.out.println("8. Сохранить всё");
+        System.out.println("8. Добавить новый шанс выпадения игрушки вне игры");
+        System.out.println("9. Сохранить всё");
         int answer = scanner.nextInt();
         return answer;
     }
@@ -182,9 +183,18 @@ public class View {
                     ToyCollections.inGame.get(i));
         }
     }
-    
+
     public static int newAmount() {
         System.out.println("Введите новое колличество для данной игрушки: ");
+        int answer = 0;
+        if (scanner.hasNextInt()) {
+            answer = scanner.nextInt();
+        }
+        return answer;
+    }
+
+    public static int newDropChance() {
+        System.out.println("Введите новый шанс выпадения игрушки(от 0 до 100): ");
         int answer = 0;
         if (scanner.hasNextInt()) {
             answer = scanner.nextInt();

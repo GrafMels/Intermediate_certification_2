@@ -80,7 +80,7 @@ public class ToyCollections {
     }
 
     public static int removeToPlayable(int id) {
-        for (int j = 0; j < allToy.size(); j++) {
+        for (int j = 0; j < inGame.size(); j++) {
             if (inGame.get(j).getName().equals(allToy.get(id).getName())) {
                 allToy.get(j).plusAmount();
                 inGame = minusToy(inGame, id);
